@@ -7,6 +7,11 @@
     "skipLibCheck": true,
 
     /* Bundler mode */
+    "baseUrl": "./",
+    "paths": {
+      "#src/*": ["./src/*.tsx"],
+      "#utils/*": ["./src/*.ts"]
+    },
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
