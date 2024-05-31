@@ -6,7 +6,7 @@ function App() {
 
   return (
     <div>
-    <Routes>
+      <Routes>
         <Route path='/' element={<Navigate to='/login' />} />
         <Route path='/chat' element={<Chat/>}/>
         <Route path='/login' element={<Login/>}/>

@@ -8,7 +8,7 @@ import { useGetUsers } from '#utils/hooks/useGetUsers';
 export default function Chat() {
   const [userId, setUserId] = useState<string>();
   const { user } = useFetchUser();
-  const { users } = useGetUsers();
+  const { users } = useGetUsers(user?.email);
   
   if (!user || users.length === 0) return <p>Cargando usuario</p>;
 

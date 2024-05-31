@@ -2,7 +2,7 @@ import { IUser } from '#utils/types/types';
 import { useEffect, useState } from 'react';
 import { FetchData } from '#utils/services/fetch-data';
 
-export const useGetUsers = () => {
+export const useGetUsers = (userId: string | undefined) => {
   const [users, setUsers] = useState<IUser[]>([]);
   useEffect(() => {
     const getUsers = async () => {
@@ -10,10 +10,13 @@ export const useGetUsers = () => {
         method: 'GET',
         uri: 'user',
       });
-      setUsers(response);
+      const users = response.filter(user => {
+        return user.email !== userId;
+      });
+      setUsers(users);
     };
     getUsers();
-  }, []);
+  }, [userId]);
 
   return { users };
 };

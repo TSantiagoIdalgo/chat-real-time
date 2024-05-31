@@ -18,9 +18,10 @@ export const useSendMessage = (userId: string, targetId: string, ws?: WebSocket,
     ws.send(JSON.stringify(sendNewMessage));
     setNewMessage('');
   };
+
   const handleNewMessage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewMessage(event.target.value);
   };
 
-  return { sendMessage, handleNewMessage, newMessage };
+  return { sendMessage, newMessage, handleNewMessage };
 };

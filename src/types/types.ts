@@ -27,5 +27,5 @@ export interface IChatMessage extends Chat{
 }
 
 export interface IChatConnection extends IChatMessage {
-    type: 'initial_message' | 'new_message'
+    type: 'initial_message' | 'new_message' | 'write_message' | 'stop_write_message'
 }
