@@ -1,0 +1,27 @@
+.user_chat {
+    height: 60px;
+    border-bottom: 1px solid #ccc;
+    background-color: #222222;
+    padding-left: 20px;
+    cursor: pointer;
+    transition: background 100ms ease-in;
+}
+
+.user_chat h2 {
+    color: #eee;
+    font-size: 1.6rem;
+    
+}
+
+.user_chat h5 {
+    color: #ccc;
+    width: 50%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.user_chat:hover {
+    background-color: #272727;
+    
+}

@@ -1,6 +1,7 @@
 
 type Status = 'pending' | 'sent' |'delivered' | 'read'
 type Type = 'connect' | 'message'
+type TypeConnection = 'initial_message' | 'new_message' | 'write_message' | 'stop_write_message' | 'get_last_messages'
 
 export interface IUser {
     name: string
@@ -27,5 +28,12 @@ export interface IChatMessage extends Chat{
 }
 
 export interface IChatConnection extends IChatMessage {
-    type: 'initial_message' | 'new_message' | 'write_message' | 'stop_write_message'
+    users: IUser[]
+    type: TypeConnection
 }
+
+export interface IGetChats extends IChatConnection {
+    chats: IChatConnection[];
+    type: TypeConnection
+}
+
