@@ -1,6 +1,5 @@
-import { useGetChats } from '../../hooks/use-get-chats';
 import Style from './chats.module.css';
-
+import { useGetChats } from '../../hooks/use-get-chats';
 import { useDispatch } from 'react-redux';
 import { setTargetUser } from '#utils/state/features/targetChatSlice';
 

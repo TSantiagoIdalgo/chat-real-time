@@ -6,6 +6,7 @@ export interface IChatsProps {
     targetId?: string;
     lastMessage?: string;
     targetName: string;
+    chatId: string;
   }
 
 interface IState {

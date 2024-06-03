@@ -1,6 +1,6 @@
 import './App.css';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import UserLogin from './modules/login/components/user-login/user-login';
+import Login from './modules/login/login';
 import Chat from './modules/chat/chat';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <div>
       <Routes>
         <Route path='/' element={<Navigate to='/login' />} />
-        <Route path='/login' element={<UserLogin/>}/>
+        <Route path='/login' element={<Login/>}/>
         <Route path='/chat' element={<Chat/>}/>
       </Routes>
     </div>

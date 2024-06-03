@@ -10,6 +10,7 @@ import './chat.css';
 
 export default function Chat () {
   const state = useSelector((state: AppState) => state.targetUser);
+ 
   return (
     <div className='container'>
       <Chats/>

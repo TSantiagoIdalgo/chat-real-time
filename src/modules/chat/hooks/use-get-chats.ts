@@ -25,7 +25,8 @@ export const useGetChats = () => {
         const response = data.chats.map(chat => (
           { targetId: chat.users[0].email,
             lastMessage: chat.messages[0].message,
-            targetName: chat.users[0].name }
+            targetName: chat.users[0].name,
+            chatId: chat.chat_id }
         ));
         dispatch(setChats(response));
       }

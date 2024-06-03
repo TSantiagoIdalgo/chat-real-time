@@ -3,8 +3,10 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export interface ITargetUserProps {
     targetId: string;
+    lastMessage?: string;
     targetName: string;
-  }
+    chatId: string;
+}
 
 interface IState {
     data: ITargetUserProps | null

@@ -6,14 +6,14 @@ import { setMessages } from '#utils/state/features/messagesSlice';
 import * as libs from '../libs/libs';
 
 export const useGetMessages = () => {
+  const { messages } = libs.useSelector((state: AppState) => state.messages);
   const dispatch = libs.useDispatch();
   const userId = libs.useSelector((state: AppState) => state.user);
   const targetId = libs.useSelector((state: AppState) => state.targetUser);
-  const { messages } = libs.useSelector((state: AppState) => state.messages);
   const token = window.sessionStorage.getItem('XSRF-TOKEN');
   const webSocketUrl = `${import.meta.env.VITE_APP_WS_URL}?token=${token}`;
   const { ws } = useWebSocketConnection(webSocketUrl);
-
+  
   libs.useEffect(() => {
     if (!ws) return;
     ws.send(JSON.stringify(sendConnectMessage(userId.data.email, targetId.data.targetId)));
@@ -24,7 +24,7 @@ export const useGetMessages = () => {
       }
     };
 
-  }, [targetId.data.targetId, userId.data.email, ws, dispatch]);
+  }, [ws, targetId.data.targetId, dispatch, targetId.data]);
 
   return { messages };
 };

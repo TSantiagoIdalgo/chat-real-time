@@ -36,6 +36,5 @@ export const useWebSocketConnection = (uri: string) => {
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   return { ws, connecting };
 };
