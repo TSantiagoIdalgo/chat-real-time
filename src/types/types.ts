@@ -37,5 +37,6 @@ export interface IChatConnection extends IChatMessage {
 
 export interface IGetChats extends IChatConnection {
     chats: IChatConnection[];
+    type: TypeConnection
 }
 

@@ -1,9 +1,10 @@
 import { useWebSocketConnection } from '#utils/hooks/useWebsocketConnection';
 import { AppState } from '#utils/state/state';
-import { sendRequestLastMessages } from '#utils/utils/websocket-messages';
-import { IGetChats } from '#utils/types/types';
-import { setChats } from '#utils/state/features/chatSlice';
+import { receiveMessages } from '../service/send-message';
+import { FetchData } from '#utils/services/fetch-data';
 import * as libs from '../libs/libs';
+import { IChatConnection } from '#utils/types/types';
+import { setChats } from '#utils/state/features/chatSlice';
 
 export const useGetChats = () => {
   const user = libs.useSelector((state: AppState) => state.user);
@@ -16,21 +17,23 @@ export const useGetChats = () => {
   
   libs.useEffect(() => {
     if (!ws || !user.data) return;
-  
-    ws.send(JSON.stringify(sendRequestLastMessages(user.data.email)));
-  
-    ws.onmessage = (e) => {
-      const data = JSON.parse(e.data) as IGetChats;
-      if (data.type === 'get_last_messages') {
-        const response = data.chats.map(chat => (
-          { targetId: chat.users[0].email,
-            lastMessage: chat.messages[0].message,
-            targetName: chat.users[0].name,
-            chatId: chat.chat_id }
-        ));
-        dispatch(setChats(response));
-      }
-    };
+    const fetchChats = async () => {
+      const fetch = await FetchData<IChatConnection[]>({
+        method: 'GET',
+        uri: 'user/chats/active',
+        headers: {
+          'Authorization': window.sessionStorage.getItem('XSRF-TOKEN') as string
+        }
+      });
+      const response = fetch.map(chat => (
+        { targetId: chat.users[0].email,
+          lastMessage: chat.messages[0].message,
+          targetName: chat.users[0].name,
+          chatId: chat.chat_id }
+      ));
+      dispatch(setChats(response));
+    };fetchChats();
+    receiveMessages(ws, dispatch);
   },[ws, user.data, dispatch]);
 
   return { chats };

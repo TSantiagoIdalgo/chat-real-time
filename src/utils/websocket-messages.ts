@@ -11,11 +11,11 @@ export const sendNewMessage = (chatId: string, userId: string, targetId: string,
   };
 };
 
-export const sendRequestLastMessages = (userId: string) => {
+export const sendRequestLastMessages = (chatId: string) => {
   return {
+    chat_id: chatId,
     message: {
       type: 'get_last_messages',
-      user_id: userId
     }
   };
 };
