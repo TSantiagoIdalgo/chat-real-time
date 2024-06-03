@@ -5,7 +5,7 @@ import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
 import { TypeConnection } from '#utils/types/types';
 import { updateChat } from '#utils/state/features/chatSlice';
 
-export const receiveMessages = (ws: WebSocket, dispatch: Dispatch<UnknownAction>, chatId: string) => {
+export const receiveMessages = (ws: WebSocket, dispatch: Dispatch<UnknownAction>, chatId?: string) => {
   ws.onmessage = (event) => {
     const data = JSON.parse(event.data) as INewMessage;
     switch(data.type as TypeConnection) {
@@ -18,7 +18,6 @@ export const receiveMessages = (ws: WebSocket, dispatch: Dispatch<UnknownAction>
       dispatch(setMessages(data.messages));
     } break;
     case 'new_message': {
-      console.log(data);
       if (data.chat_id === chatId) dispatch(setNewMessage(data));
     } break;
     default: break;

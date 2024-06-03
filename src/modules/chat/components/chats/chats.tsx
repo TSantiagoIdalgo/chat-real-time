@@ -5,7 +5,6 @@ import { setTargetUser } from '#utils/state/features/targetChatSlice';
 
 export default function Chats () {
   const { chats } = useGetChats();
-  console.log(chats);
   const dispatch = useDispatch();
   return (
     <aside className="chats">

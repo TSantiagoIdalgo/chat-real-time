@@ -27,7 +27,7 @@ export const useGetChats = () => {
       });
       const response = fetch.map(chat => (
         { targetId: chat.users[0].email,
-          lastMessage: chat.messages[0].message,
+          lastMessage: chat.messages[0] ? chat.messages[0].message : '',
           targetName: chat.users[0].name,
           chatId: chat.chat_id }
       ));

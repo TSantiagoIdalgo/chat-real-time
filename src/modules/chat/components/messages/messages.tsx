@@ -6,7 +6,7 @@ export default function Messages () {
 
   return (
     <section className='messages'>
-      <Message messages={messages}/>
+      <Message messages={messages ? messages : []}/>
     </section>
   );
 }
