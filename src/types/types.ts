@@ -21,6 +21,7 @@ export interface IMessages {
     type: Type
     user_id: string;
     chat_id: string;
+    createdAt: string;
 }
 
 export interface IChatMessage extends Chat{

@@ -6,7 +6,7 @@ export default function User() {
   return (
     <section className='user'>
       { user && <h2 className={Style.user_name}>{user.name}</h2>}
-      <input type="text" />
+      <input type="search" className={Style.input_name} placeholder='Search users...'/>
     </section>
   );
 }

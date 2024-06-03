@@ -1,5 +1,18 @@
 .user_name {
-    margin-left: 20px;
-    font-size: 1.5rem;
-    color: #ddd;
+    font-size: 1rem;
+    color: #171717;
+    font-family: var(--font-inter);
+    font-weight: 400;
+}
+
+.input_name {
+    height: 40px;
+    border-radius: .5rem;
+    outline: 1.5px solid #e5e7eb;
+    border: none;
+    padding-left: 10px;
+}
+
+.input_name::placeholder {
+    color: #888;
 }
