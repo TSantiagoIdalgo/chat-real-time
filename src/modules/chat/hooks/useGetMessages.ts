@@ -1,21 +1,20 @@
-import { useWebSocketConnection } from './useWebsocketConnection';
+import { useWebSocketConnection } from '../../../hooks/useWebsocketConnection';
 import { sendConnectMessage } from '#utils/utils/websocket-messages';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
 import { AppState } from '#utils/state/state';
 import { IChatConnection } from '#utils/types/types';
 import { setMessages } from '#utils/state/features/messagesSlice';
+import * as libs from '../libs/libs';
 
 export const useGetMessages = () => {
-  const dispatch = useDispatch();
-  const userId = useSelector((state: AppState) => state.user);
-  const targetId = useSelector((state: AppState) => state.targetUser);
-  const { messages } = useSelector((state: AppState) => state.messages);
+  const dispatch = libs.useDispatch();
+  const userId = libs.useSelector((state: AppState) => state.user);
+  const targetId = libs.useSelector((state: AppState) => state.targetUser);
+  const { messages } = libs.useSelector((state: AppState) => state.messages);
   const token = window.sessionStorage.getItem('XSRF-TOKEN');
   const webSocketUrl = `${import.meta.env.VITE_APP_WS_URL}?token=${token}`;
   const { ws } = useWebSocketConnection(webSocketUrl);
 
-  useEffect(() => {
+  libs.useEffect(() => {
     if (!ws) return;
     ws.send(JSON.stringify(sendConnectMessage(userId.data.email, targetId.data.targetId)));
     ws.onmessage = (event) => {

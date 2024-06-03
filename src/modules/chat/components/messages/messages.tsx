@@ -1,5 +1,5 @@
 import Message from '../message/message';
-import { useGetMessages } from '#utils/hooks/useGetMessages';
+import { useGetMessages } from '../../hooks/useGetMessages';
 
 export default function Messages () {
   const { messages } = useGetMessages();
