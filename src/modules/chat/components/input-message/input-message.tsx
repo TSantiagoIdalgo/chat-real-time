@@ -4,14 +4,13 @@ import { useSendMessage } from '../../hooks/use-send-message';
 
 export default function InputMessage () {
   const { newMessage, sendMessage, setNewMessage } = useSendMessage();
-
   return (
     <figure className='input'>
       <textarea className={Style.input_message} 
         onKeyDown={(e) => e.key === 'Enter' && sendMessage()} 
         placeholder='Type your message...' 
         onChange={setNewMessage}
-        value={newMessage}/>
+        value={newMessage.data.text}/>
       <div className={Style.send_button} onClick={sendMessage}>
         <img src={sendIcon} alt="send" />
       </div>

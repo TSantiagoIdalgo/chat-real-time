@@ -1,12 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-interface initialState {
-  loading: boolean
-  
+export interface WrtieState {
+  data: {
+    loading: boolean
+    text: string,
+    chatIds: string[]
+  }
 }
 
-const initialState: initialState = {
-  loading: false
+const initialState: WrtieState = {
+  data: {
+    loading: false,
+    text: '',
+    chatIds: []
+  }
 };
 
 const writeSlice = createSlice({
@@ -14,11 +21,20 @@ const writeSlice = createSlice({
   initialState,
   reducers: {
     setWrite: (state, action) => {
-      state.loading = action.payload;
+      state.data.text = action.payload;
     },
+    setTyping: (state, action) => {
+      state.data.loading = action.payload;
+    },
+    setChatId: (state, action) => {
+      state.data.chatIds.push(action.payload);
+    },
+    deleteChatId: (state, action) => {
+      state.data.chatIds = state.data.chatIds.filter(id => id !== action.payload);
+    }
   },
 });
 
-export const { setWrite } = writeSlice.actions;
+export const { setWrite, setTyping, setChatId, deleteChatId } = writeSlice.actions;
 
 export default writeSlice.reducer;
