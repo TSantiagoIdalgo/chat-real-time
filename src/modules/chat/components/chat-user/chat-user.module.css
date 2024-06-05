@@ -5,3 +5,11 @@
     font-weight: 400;
     margin-left: 20px;
 }
+
+.Typing {
+    font-size: .8rem;
+    color: #171717;
+    font-family: var(--font-inter);
+    font-weight: 400;
+    margin-left: 20px;
+}

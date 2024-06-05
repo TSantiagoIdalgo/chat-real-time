@@ -1,17 +1,20 @@
 
 type Status = 'pending' | 'sent' |'delivered' | 'read'
-export type TypeConnection = 'initial_message' | 'new_message' | 'write_message' | 'stop_write_message' | 'get_last_messages'
+export type Type = 'message'|  'connect' | 'leave' | 'write_message' | 'get_chats'
+
+export enum TypesResponse {
+    NEW_MESSAGE = 'new_message',
+    INITIAL_MESSAGE = 'initial_message',
+    UPDATED_CHATS = 'updated_chats',
+    INITIAL_CHATS = 'initial_chats',
+    TYPING = 'typing',
+    STOP_TYPING = 'stop_typing'
+}
 
 export interface IUser {
     name: string
     email: string;
     password: string;
-}
-
-export interface Chat {
-    chat_id: string;
-    usersInChat: string[];
-    type: TypeConnection
 }
 
 export interface IMessages {
@@ -23,20 +26,29 @@ export interface IMessages {
     createdAt: string;
 }
 
-export interface INewMessage extends IMessages {
-    type: TypeConnection
+export interface Chat {
+    chat_id: string;
+    usersInChat: string[];
+    type: TypesResponse
+    messages: IMessages[]
 }
-
-export interface IChatMessage extends Chat{
-    messages: IMessages[];
-}
-
-export interface IChatConnection extends IChatMessage {
+export interface IChatConnection extends Chat {
     users: IUser[]
 }
 
-export interface IGetChats extends IChatConnection {
-    chats: IChatConnection[];
-    type: TypeConnection
+interface InitialChats extends Chat {
+  users: IUser[]
+}
+export interface Initial_chats {
+    chat: InitialChats[];
+    type: TypesResponse
 }
 
+export interface Initial_message {
+    chat: Chat;
+    type: TypesResponse
+}
+
+export interface New_message {
+    message: IMessages;
+}

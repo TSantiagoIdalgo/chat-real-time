@@ -1,6 +1,7 @@
-import { fetchUserData } from '../service/fetch-user-data';
+import { FetchData } from '#utils/services/fetch-data';
 import { AppState } from '#utils/state/state';
 import { setUser } from '#utils/state/features/userSlice';
+import { IUser } from '#utils/types/types';
 import * as libs from '../libs/libs';
 
 export const useGetUser = () => {
@@ -8,7 +9,13 @@ export const useGetUser = () => {
   const state = libs.useSelector((state: AppState) => state.user);
   libs.useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchUserData();
+      const data = await FetchData<IUser>({
+        uri: 'user/user',
+        method: 'GET',
+        headers: {
+          'Authorization': window.sessionStorage.getItem('XSRF-TOKEN') as string
+        }
+      });
       dispatch(setUser(data));
     };
     fetchData();

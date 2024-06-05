@@ -1,40 +1,31 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export const useWebSocketConnection = (uri: string) => {
-  const [ws, setWs] = useState<WebSocket | null>(null);
   const [connecting, setConnecting] = useState(false);
-
+  const ws = useRef<WebSocket | null>(null);
   useEffect(() => {
     const connectWebSocket = () => {
+      if (!ws.current) ws.current = new WebSocket(uri);
       setConnecting(true);
-      const socket = new WebSocket(uri);
 
-      socket.onopen = () => {
+      ws.current.onopen = () => {
         console.log('WebSocket connection established');
-        setWs(socket);
         setConnecting(false);
       };
 
-      socket.onclose = () => {
+      ws.current.onclose = () => {
         console.log('WebSocket connection closed');
-        setWs(null);
         setConnecting(false);
       };
 
-      socket.onerror = (error) => {
+      ws.current.onerror = (error) => {
         console.error('WebSocket error', error);
-        setWs(null);
         setConnecting(false);
       };
     };
 
     connectWebSocket();
-    return () => {
-      if (ws) {
-        ws.close();
-      }
-    };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [ws.current, uri]);
   return { ws, connecting };
 };

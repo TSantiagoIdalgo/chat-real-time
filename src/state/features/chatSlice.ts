@@ -20,11 +20,11 @@ const chatSlice = createSlice({
   initialState,
   reducers: {
     setChats: (state, action) => {
-      if (Array.isArray(action.payload.chats)) state.data = action.payload.chats;
-      else state.data = action.payload;
+      state.data = action.payload;
     },
     updateChat: (state, action) => {
-      const { chat_id, messages } = action.payload.chats;
+      const messages = action.payload.messages;
+      const chat_id = action.payload.chat_id;
       const index = state.data.findIndex((item) => item.chatId === chat_id);
       if (index !== -1) {
         state.data[index].lastMessage = messages[0].message;

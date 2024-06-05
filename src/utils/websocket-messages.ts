@@ -29,3 +29,14 @@ export const sendConnectMessage = (userId: string, targetId: string) => {
     }
   };
 };
+
+export const sendWriteMessage = (chatId: string, users: string[], userId: string, type: 'write_message' | 'stop_write_message') => {
+  return {
+    chat_id: chatId,
+    usersInChat: users,
+    message: {
+      type: type,
+      user_id: userId
+    }
+  };
+};
