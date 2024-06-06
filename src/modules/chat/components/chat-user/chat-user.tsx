@@ -11,7 +11,7 @@ export default function ChatUser () {
   return (
     <header className="chat_user">
       <h2 className={Style.target_user_name }>{targetUser.data.targetName}</h2>
-      <span className={Style.Typing}>{ write.data.loading && 'Typing...'}</span> 
+      <span className={Style.Typing}>{ write.data.chatIds.includes(targetUser.data.chatId) && 'Typing...'}</span> 
     </header>
   );
 }

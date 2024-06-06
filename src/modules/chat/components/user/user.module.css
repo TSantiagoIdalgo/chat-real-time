@@ -16,3 +16,47 @@
 .input_name::placeholder {
     color: #888;
 }
+
+.user_list {
+    width: 85%;
+    height: max-content;
+    left: 25px;
+    top: 80px;
+    background-color: #fff;
+    border: 2px solid #e5e7eb;
+    border-radius: .5rem;
+    position: absolute;
+}
+
+.users {
+    display: flex;
+    align-items: center;
+    height: 45px;
+    padding-left: 20px;
+    padding-left: 12px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 0.5rem;
+    transition: background 100ms ease-in;
+}
+
+.user_chat_avatar {
+    width: 32px;
+    height: 32px;
+    background-color: #ccc;
+    border-radius: 50%;
+}
+
+.users h2 {
+    color: #6b7280;
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.users:hover {
+    background-color: #eee;
+    
+}

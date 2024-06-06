@@ -21,6 +21,7 @@
     justify-content: space-evenly;
     flex-direction: column;
     border-right: 2px solid #e5e7eb;
+    position: relative;
 }
   
 .chat_user { 
@@ -60,5 +61,6 @@
     display: flex;
     flex-direction: column;
     border-right: 2px solid #e5e7eb;
+    overflow-y: scroll;
 }
   

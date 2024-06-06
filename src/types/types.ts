@@ -30,7 +30,8 @@ export interface Chat {
     chat_id: string;
     usersInChat: string[];
     type: TypesResponse
-    messages: IMessages[]
+    messages: IMessages[],
+    users: IUser[]
 }
 export interface IChatConnection extends Chat {
     users: IUser[]

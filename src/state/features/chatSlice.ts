@@ -1,3 +1,4 @@
+import { IMessages } from '#utils/types/types';
 import { createSlice } from '@reduxjs/toolkit';
 
 export interface IChatsProps {
@@ -5,6 +6,7 @@ export interface IChatsProps {
     lastMessage?: string;
     targetName: string;
     chatId: string;
+    messages?: IMessages[]
   }
 
 interface IState {
